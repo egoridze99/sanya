@@ -1,0 +1,64 @@
+@import "./core.variables";
+
+.table-cell-container {
+  padding: 0 $space_S;
+}
+
+.full-height-container {
+  height: 100%;
+}
+
+.full-width-container {
+  width: 100%;
+}
+
+.flex-container {
+  display: flex;
+}
+
+.flex-end {
+  justify-content: flex-end;
+}
+
+.flex-center {
+  justify-content: center;
+}
+
+.small-left-margin {
+  margin-left: $space_S;
+}
+
+.small-top-margin {
+  margin-top: $space_S;
+}
+
+/* custom scroll */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  position: absolute;
+}
+
+::-webkit-scrollbar:hover {
+  width: 6px;
+  height: 6px;
+  background-color: rgba(100, 100, 100, 0.1);
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 18px;
+  position: absolute;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border-radius: 18px;
+  background: $icon_color;
+  height: 6px;
+  position: absolute;
+}
+
+::-webkit-scrollbar-thumb:window-inactive {
+  background: rgba(100, 100, 100, 0.2);
+}

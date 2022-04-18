@@ -1,0 +1,14 @@
+@import "src/core/stylesheets/core.variables";
+
+.Table__Footer {
+  width: 100%;
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  background: $white;
+  padding: $space_S;
+  border: 1px solid $table_border_color;
+  border-radius: 0 0 $border-radius_s $border-radius_s;
+  box-sizing: border-box;
+}

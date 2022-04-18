@@ -1,0 +1,60 @@
+@import "src/core/stylesheets/core.variables";
+@import "src/core/stylesheets/core.mixins";
+
+.RowGroupHeader {
+  cursor: pointer;
+  position: relative;
+
+  &_blocked {
+    cursor: not-allowed;
+  }
+
+  th, td {
+    @include text_M;
+    z-index: 1;
+    border-bottom: 1px $table_border_color solid;
+  }
+
+  &__checkbox {
+    position: sticky;
+    left: 0;
+    background-color: $white;
+
+    &-container {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  &__title {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
+
+    &_sticky {
+      width: fit-content;
+      position: sticky;
+
+      .RowGroupHeader__title_sticky#{&-with-offset} {
+        left: 90px;
+      }
+
+      .RowGroupHeader__title_sticky#{&-without-offset} {
+        left: 50px;
+      }
+    }
+  }
+
+  &__arrow-icon {
+    position: sticky;
+    background-color: $white;
+
+    &_expanded {
+      svg {
+        transform: rotate(180deg);
+      }
+
+    }
+  }
+}

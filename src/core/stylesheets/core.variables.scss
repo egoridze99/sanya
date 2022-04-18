@@ -1,0 +1,25 @@
+@import "core.colors";
+
+/**
+Бордер радиус
+*/
+$border-radius_s: 4px;
+
+/**
+Отступы
+ */
+$space_XXS: 4px;
+$space_XS: 8px;
+$space_S: 10px;
+$space_M: 16px;
+$space_L: 20px;
+$space_XL: 24px;
+$space_XXL: 34px;
+
+/**
+Тени
+ */
+$shadow_S: 0px 4px 12px rgba(0, 0, 0, 0.1);
+$shadow_M: 0px 8px 12px rgba(0, 0, 0, 0.08);
+$shadow_L: 6px -1px 14px rgba(0, 0, 0, 0.16);
+$shadow_XL: 0px 12px 24px rgba(0, 0, 0, 0.2);

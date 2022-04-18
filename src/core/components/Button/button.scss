@@ -1,0 +1,237 @@
+@import "src/core/stylesheets/core.variables";
+@import "src/core/stylesheets/core.mixins";
+@import "src/core/stylesheets/core.colors";
+
+.Button {
+  $self: &;
+  @include text_M;
+
+  height: 34px;
+  min-width: 34px;
+  border-radius: $border-radius_s;
+  background-color: $white;
+  border: 0;
+  color: $button_secondary_text_color;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+
+  &:hover {
+    background-color: $button_secondary_bg_color_hover;
+  }
+
+  &:active {
+    background: $white;
+  }
+
+  &__loader {
+    color: $element_color_active;
+  }
+
+  &__icon {
+    margin-right: $space_S;
+  }
+
+  &__clear {
+    height: 20px;
+    width: 20px;
+    border-radius: $border-radius_s;
+    outline: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: $space_XXS;
+
+    &:hover {
+      background-color: $button_clear_bg_color_hover;
+    }
+
+    &:active {
+      background: $button_clear_bg_color_hover;
+    }
+  }
+
+  &_small {
+    height: 24px;
+    min-width: 24px;
+  }
+
+  &_active {
+    background-color: $white;
+  }
+
+  &_primary {
+    padding: 0 $space_XS;
+    color: $white;
+    background-color: $button_primary_bg_color;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: $button_primary_bg_color_hover;
+    }
+
+    &:active {
+      background-color: $button_primary_bg_color;
+    }
+
+    &#{ $self }_disabled {
+      background-color: $button_bg_color_disabled;
+      color: $button_text_color_disabled;
+
+      &:hover {
+        background-color: $button_bg_color_disabled;
+        color: $button_text_color_disabled;
+        border: none;
+      }
+    }
+
+    #{$self}__loader {
+      color: $white;
+    }
+  }
+
+  &_secondary {
+    padding: 0 $space_XS;
+    background-color: $white;
+    border: 1px $button_secondary_border_color solid;
+    color: $button_secondary_text_color;
+    transition: background-color .3s;
+
+    &:hover {
+      background-color: $button_secondary_bg_color_hover;
+    }
+
+    &:active {
+      background-color: $white;
+    }
+  }
+
+  &_dropdown {
+    border: 1px solid $button_dropdown_border_color;
+    display: inline-flex;
+    align-items: center;
+    padding: 0 $space_XS;
+    color: $button_dropdown_text_color;
+
+    & span {
+      margin-right: $space_S;
+    }
+
+    & > svg:first-child {
+      margin-right: $space_S;
+    }
+
+    &:hover {
+      border-color: $button_dropdown_border_color_hover;
+      background-color: $button_dropdown_bg_color_hover;
+    }
+
+    &:active, &#{ $self }_active {
+      background-color: $white;
+      color: $button_dropdown_text_color_active;
+      border-color: $button_dropdown_border_color_active;
+    }
+  }
+
+  &_icon-dropdown {
+    border: 1px solid $button_dropdown_border_color;
+    display: inline-flex;
+    align-items: center;
+    padding: 0 $space_XS;
+    color: $button_dropdown_text_color;
+
+    & span {
+      margin-right: $space_S;
+    }
+
+    & > svg:first-child {
+      margin-right: $space_S;
+    }
+
+    &:hover {
+      border-color: $button_dropdown_border_color_hover;
+      background-color: $button_dropdown_bg_color_hover;
+    }
+
+    &:active, &#{ $self }_active {
+      background-color: $white;
+      border-color: $button_dropdown_border_color_active;
+    }
+  }
+
+  &_icon {
+    color: $button_icon_color_enable;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      background-color: $button_icon_bg_color_hover;
+    }
+
+    &:active, &#{ $self }_active {
+      background-color: $button_icon_bg_color_active;
+      color: $button_icon_color_active;
+
+      #{$self}_icon-react-element {
+        path {
+          fill: $element_color_active;
+        }
+      }
+    }
+  }
+
+  &_border-icon {
+    color: $button_icon_color_enable;
+    border: 1px solid $button_icon_border_color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      border-color: $button_icon_border_color_hover;
+      background-color: $button_icon_bg_color_hover;
+    }
+
+    &:active, &#{ $self }_active {
+      background-color: $button_icon_bg_color_active;
+      color: $button_icon_color_active;
+      border-color: $button_icon_bg_color_active;
+    }
+  }
+
+  &_disabled {
+    border-color: $button_bg_color_disabled;
+    background-color: $button_bg_color_disabled;
+    color: $button_text_color_disabled;
+    cursor: not-allowed;
+
+    &:hover {
+      border-color: $button_bg_color_disabled;
+      background-color: $button_bg_color_disabled;
+      color: $button_text_color_disabled;
+    }
+  }
+
+  &__active-items-count {
+    border-radius: 50%;
+    background-color: $error_color;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(50%, -50%);
+
+    &-text {
+      margin: 0;
+      padding: 0;
+      font-size: 8px;
+      color: $white;
+    }
+  }
+}

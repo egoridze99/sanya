@@ -1,0 +1,178 @@
+@import "src/core/stylesheets/core.variables";
+@import "src/core/stylesheets/core.colors";
+
+.CheckBox {
+  $self: &;
+
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  user-select: none;
+  align-items: center;
+
+  input {
+    display: none;
+
+    &:checked {
+      & + label {
+        &::before {
+          background: $white;
+        }
+
+        &::after {
+          content: "";
+          mask: url("./assets/check.svg") no-repeat 50% 50%;
+          display: flex;
+          height: 16px;
+          width: 16px;
+          justify-content: center;
+          align-items: center;
+          position: absolute;
+          left: 0;
+          font-size: 12px;
+          background: $checkbox_primary_icon_color_check;
+        }
+      }
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+
+      & + label {
+        &::before {
+          background: $checkbox_bg_color_disabled;
+          border-color: $checkbox_border_color_disabled;
+        }
+        
+        &::after {
+          background: $checkbox_check_color_disabled;
+        }
+      }
+    }
+  }
+
+  label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    &::before {
+      background: white;
+      content: "";
+      display: block;
+      height: 16px;
+      width: 16px;
+      min-width: 16px;
+      border: 1px $checkbox_primary_border_color solid;
+      box-sizing: border-box;
+      border-radius: $border-radius_s;
+    }
+  }
+
+  &_part {
+    input {
+      &:checked {
+        & + label {
+          &::after {
+            content: "-";
+            color: $checkbox_primary_icon_color_check;
+            mask: none;
+            background: unset;
+          }
+        }
+      }
+    }
+  }
+
+  &_with-label {
+    label {
+      &::before {
+        margin-right: $space_S;
+      }
+    }
+  }
+
+  &_success {
+    input {
+      &:disabled {
+        & + label {
+          &::before {
+            border-color: $success_color;
+          }
+        }
+      }
+    }
+
+    label {
+      &::before {
+        border-color: $success_color;
+      }
+    }
+  }
+
+  &_error {
+    input {
+      &:disabled {
+        & + label {
+          &::before {
+            border-color: $error_color;
+          }
+        }
+      }
+    }
+
+    label {
+      &::before {
+        border-color: $error_color;
+      }
+    }
+  }
+
+  &_secondary {
+    input {
+      &:checked {
+        & + label {
+          &::before {
+            background: $checkbox_secondary_bg_color_active;
+            border-color: $checkbox_secondary_bg_color_active;
+          }
+
+          &::after {
+            background: $checkbox_secondary_icon_color_check;
+          }
+        }
+      }
+
+      &:disabled {
+        & + label {
+          &::before {
+            background: $checkbox_bg_color_disabled;
+            border-color: $checkbox_border_color_disabled;
+          }
+
+          &::after {
+            background: $checkbox_check_color_disabled;
+          }
+        }
+      }
+    }
+
+    &#{$self}_part {
+      input {
+        &:checked {
+          & + label {
+            &::before {
+              background: $checkbox_secondary_bg_color_active;
+              border-color: $checkbox_secondary_bg_color_active;
+            }
+
+            &::after {
+              color: $checkbox_secondary_icon_color_check;
+              background: unset;
+            }
+          }
+        }
+      }
+    }
+  }
+}

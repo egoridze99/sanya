@@ -1,0 +1,81 @@
+@import "src/core/stylesheets/core.variables";
+@import "src/core/stylesheets/core.mixins";
+
+.Pagination {
+  display: flex;
+  user-select: none;
+  align-items: center;
+
+  &__arrows {
+    display: flex;
+    align-items: center;
+
+    &-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      cursor: pointer;
+
+      &:last-child {
+        margin-left: $space_XS;
+      }
+
+      &_disabled {
+        cursor: not-allowed;
+
+        svg {
+          path {
+            fill: $element_color_disabled
+          }
+        }
+      }
+    }
+  }
+
+  &__item {
+    @include text_M;
+
+    min-width: 34px;
+    min-height: 34px;
+    margin: $space_XXS;
+    cursor: pointer;
+    border-radius: $border-radius_s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 $space_XXS;
+    box-sizing: border-box;
+    color: $secondary_text_color;
+
+    &:hover {
+      border: 1px $button_icon_border_color_hover solid;
+      background: $button_icon_bg_color_hover;
+    }
+
+    &_active {
+      color: $element_color_active;
+      background: $button_icon_bg_color_active;
+    }
+
+    &_dots {
+      &:hover {
+        border: unset;
+        background: unset;
+      }
+    }
+  }
+
+  &__range-text {
+    @include text_M;
+    margin-left: $space_L;
+    color: $secondary_text_color;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__dropdown {
+    margin-left: $space_M;
+  }
+}

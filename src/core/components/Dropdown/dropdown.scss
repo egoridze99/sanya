@@ -1,0 +1,43 @@
+@import "src/core/stylesheets/core.variables";
+@import "src/core/stylesheets/core.colors";
+
+.Dropdown {
+  box-shadow: $shadow_M;
+  border-radius: $border-radius_s;
+  background: $white;
+
+  &__menu-item {
+    box-sizing: border-box;
+    display: flex;
+    color: $primary_text_color;
+    align-items: center;
+    justify-content: space-between;
+    height: 36px;
+    padding: 0 $space_L;
+    text-overline: ellipsis;
+    cursor: pointer;
+    overflow: hidden;
+
+    &:hover {
+      background: $element_color_selected;
+    }
+  }
+
+  &__input {
+    padding: $space_L $space_L $space_XXS $space_L;
+  }
+
+  &__selected-icon {
+    width: 10px;
+    height: 10px;
+    margin-left: $space_S;
+    color: $element_color_active;
+  }
+}
+
+/**
+  react-tiny-popover не дает задать z-index напрямую
+ */
+.react-tiny-popover-container {
+  z-index: 1000;
+}

@@ -1,0 +1,196 @@
+@import "src/core/stylesheets/core.variables";
+@import "src/core/stylesheets/core.mixins";
+
+.Table {
+  $self: &;
+  @include text_M;
+
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+  table-layout: fixed;
+  box-sizing: border-box;
+
+  &__Row {
+    position: relative;
+
+    &-border-item {
+      position: absolute;
+      left: 0;
+      width: 3px;
+      height: calc(100% + 1px);
+      top: 0;
+
+      &_first {
+        border-radius: 10px 0 0 0;
+      }
+
+      &_last {
+        border-radius: 0 0 0 10px;
+      }
+
+      &_first_last {
+        border-radius: 10px 0 0 10px;
+      }
+    }
+
+    &:hover {
+      #{$self}__Cell {
+        background: $table_row_color_hover !important;
+      }
+    }
+  }
+
+  &__selected-editor-row {
+    position: sticky;
+    z-index: 100;
+  }
+
+  &__group-checker-container {
+    @include text_M;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: $space_L;
+    width: 100%;
+    flex: 1;
+
+    #{$self}__group-checker-title {
+      font-weight: bold;
+      border-bottom: 1px $dividing_line_color solid;
+      margin-bottom: $space_XXS;
+    }
+
+    #{$self}__group-checker-cols {
+      display: flex;
+      flex-wrap: wrap;
+
+      & > div {
+        width: 50%;
+      }
+    }
+
+    &-checkbox-container {
+      margin-bottom: $space_S;
+    }
+  }
+
+  &__column-group-label {
+    display: flex;
+    align-items: center;
+
+    span {
+      @include text_XS;
+      color: #4b92c2;
+      padding-left: $space_S;
+    }
+  }
+
+  &__slider {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: inline;
+    width: 1px;
+    height: 100%;
+    cursor: col-resize;
+    border-left: 2px dashed $element_color_active;
+    z-index: 1000;
+    user-select: none;
+  }
+
+  &-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &-body {
+    display: flex;
+    flex-direction: column;
+    max-height: 100%;
+    flex: 1;
+    border: 1px solid $table_border_color;
+    background: $white;
+    overflow-x: auto;
+
+    &-body_resizeable {
+      td,
+      th {
+        user-select: none;
+      }
+    }
+  }
+
+  &-columns-checker {
+    @include text_S;
+    position: absolute;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    padding: $space_XXS $space_XXS $space_XXS $space_XS;
+    color: $white;
+    background-color: #757575;
+    border-radius: 0 0 0 $border-radius_s;
+    cursor: pointer;
+    align-items: center;
+
+    & svg * {
+      fill: white;
+    }
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    & > span {
+      padding-left: 5px;
+    }
+  }
+
+  &-groups-modal-content {
+    width: 100%;
+  }
+}
+
+
+/**
+  Кастомный скроллбар для таблицы
+ */
+.Table-body {
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 10px;
+    position: absolute;
+  }
+
+  &::-webkit-scrollbar:hover {
+    width: 6px;
+    height: 10px;
+    background-color: rgba(100, 100, 100, 0.1);
+  }
+
+  /* Track */
+
+  &::-webkit-scrollbar-track {
+    border-radius: 18px;
+    position: absolute;
+  }
+
+  /* Handle */
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 18px;
+    background: #8e8e93;
+    height: 10px;
+    position: absolute;
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  &:hover {
+    &::-webkit-scrollbar {
+      display: block;
+    }
+  }
+}

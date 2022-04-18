@@ -1,0 +1,124 @@
+@import "src/core/stylesheets/core.variables";
+@import "src/core/stylesheets/core.mixins";
+
+.TextInput {
+  $self: &;
+
+  position: relative;
+  height: fit-content;
+
+  label {
+    padding-left: $space_XXS;
+  }
+
+  &__before-icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin-left: $space_XXS;
+    color: $text_input_icon_color;
+
+    & svg {
+      width: 14px;
+      height: 14px;
+    }
+  }
+
+  &__clear-icon {
+    position: absolute;
+    top: 0;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding-right: $space_XS;
+    color: $text_input_icon_color;
+    cursor: pointer;
+
+    & svg {
+      padding: 2px;
+      background: $white;
+      border-radius: $space_S;
+      width: 10px;
+      height: 10px;
+    }
+
+    &:hover {
+      opacity: .7;
+    }
+  }
+
+  &__buttons-container {
+    position: absolute;
+    bottom: 0;
+    right: 1px;
+    height: 100%;
+  }
+
+  &__button-item {
+    height: 100%;
+    display: flex;
+    width: 30px;
+    box-sizing: border-box;
+
+    border-radius: 0 $border-radius_s $border-radius_s 0;
+    color: $text_input_icon_color;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    &:hover {
+      color: $element_color_active;
+    }
+  }
+
+  &__text-input {
+    @include text_M;
+    border-radius: $border-radius_s;
+    resize: none;
+    outline: 0;
+    width: 100%;
+    box-sizing: border-box;
+    height: 36px;
+    padding-right: $space_S;
+    padding-left: $space_S;
+    border: 1px $text_input_color_enable solid;
+
+    &::placeholder {
+      @include text_M;
+      color: $text_input_color_enable;
+    }
+
+    &_with-offset {
+      padding-left: $space_XL;
+    }
+  }
+
+  &_primary {
+    #{$self}__text-input {
+      border: 1px $text_input_color_enable solid;
+
+      &:active, &:focus {
+        border: 1px $element_color_active solid;
+      }
+    }
+
+    #{$self}__button-item {
+      border-top: 1px $element_color_active solid;
+      border-bottom: 1px $element_color_active solid;
+    }
+  }
+
+  &_danger {
+    #{$self}__text-input {
+      border: 1px $error_color solid;
+    }
+
+    #{$self}__button-item {
+      border-top: 1px $error_color solid;
+      border-bottom: 1px $error_color solid;
+    }
+  }
+}

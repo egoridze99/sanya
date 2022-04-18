@@ -1,0 +1,254 @@
+@import "src/core/stylesheets/core.variables";
+@import "src/core/stylesheets/core.mixins";
+
+.Table__TableColumnHeaderCell {
+  $self: &;
+
+  &-label {
+    @include H4;
+    margin: 14px 30px 0;
+    text-align: center;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    color: $table_header_text_color;
+  }
+
+  &-popup {
+    background-color: $white;
+    border: 1px solid $dividing_line_color;
+    box-sizing: border-box;
+    box-shadow: $shadow_XL;
+    border-radius: 0 0 $border-radius_s $border-radius_s;
+    position: relative;
+    z-index: 10;
+
+    &-option {
+      box-sizing: border-box;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      padding: 0 $space_L;
+      cursor: pointer;
+
+      p {
+        @include text_M;
+      }
+
+      svg {
+        margin-right: $space_L;
+
+        path {
+          fill: $icon_color;
+        }
+      }
+
+      &:hover,
+      &_active {
+        background: $table_row_color_hover;
+      }
+
+      &_active {
+        svg {
+          path {
+            fill: $element_color_active;
+          }
+        }
+      }
+    }
+  }
+
+  &-option-group {
+    display: flex;
+
+    &-option {
+      cursor: pointer;
+      border-radius: $border-radius_s;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      user-select: none;
+      border: 1px $table_border_color;
+      box-sizing: border-box;
+      width: 30px;
+      height: 30px;
+
+      svg {
+        path {
+          fill: $icon_color;
+        }
+      }
+
+      .svg-active {
+        path {
+          fill: $element_color_active;
+        }
+
+        &:hover {
+          svg {
+            path {
+              fill: $element_color_active;
+            }
+          }
+        }
+      }
+
+      &_active {
+        svg {
+          path {
+            fill: $element_color_active;
+          }
+        }
+      }
+
+      &:hover {
+        background: $table_row_color_hover;
+        border-style: solid;
+      }
+    }
+  }
+
+  &-options-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    user-select: none;
+    box-sizing: border-box;
+    top: 6px;
+
+    &_small-header {
+      position: absolute;
+    }
+  }
+
+  &-filter-container {
+    padding: $space_S;
+    background-color: $white;
+    box-shadow: $shadow_S;
+    border-radius: $border-radius_s;
+    position: absolute;
+    bottom: -2px;
+    right: 33px;
+    transform: translateY(100%) translateX(100%);
+    z-index: 0;
+
+    &_last {
+      right: 3px;
+      transform: translateY(100%) translateX(0);
+    }
+  }
+
+  &-splitter {
+    position: absolute;
+    top: 0;
+    right: -3px;
+    height: 100%;
+    width: 5px;
+    cursor: col-resize;
+  }
+
+  &-toggle-tag {
+    position: absolute;
+    top: 8px;
+    right: 5px;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    border-radius: $border-radius_s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    border: 1px $table_border_color;
+    box-sizing: border-box;
+    z-index: 10000;
+
+    &_small-header {
+      top: 35px;
+      right: -5px;
+    }
+
+    svg {
+      path {
+        fill: $element_color_active;
+      }
+    }
+
+    &#{$self}-header-cell-option-active {
+      svg {
+        path {
+          fill: $element_color_active;
+        }
+      }
+
+      &:hover {
+        svg {
+          path {
+            fill: $element_color_active;
+          }
+        }
+      }
+    }
+
+    &:hover {
+      svg {
+        path {
+          fill: $element_color_active;
+        }
+      }
+    }
+  }
+
+  &-base-header-cell {
+    @include text_S;
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    color: $table_header_text_color;
+    font-size: 12px;
+
+    #{$self}-header-cell-checkbox {
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
+  }
+
+  &-customized-header-cell {
+    @include H4;
+    text-align: left;
+    padding: 0;
+    box-sizing: border-box;
+
+    position: sticky;
+    border-top: 1px $table_border_color solid;
+    border-bottom: 1px $table_border_color solid;
+    min-width: 120px;
+    top: 0;
+    vertical-align: bottom;
+    border-left: none;
+    background: $table_header_bg_color;
+
+    z-index: 2;
+    left: unset;
+    border-right: initial;
+  }
+
+  &-arrow-icon {
+    cursor: pointer;
+
+    &_expanded {
+      transform: rotate(180deg);
+    }
+
+    &-container {
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+  }
+}
