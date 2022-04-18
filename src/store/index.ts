@@ -1,7 +1,10 @@
-import {ElectroenergyRepository} from './electroenergy/electroenergy.repository';
+import {ElectroenergyRepository} from "./electroenergy/electroenergy.repository";
 
 const electroenergy = new ElectroenergyRepository();
 
 export const store = {
-    electroenergy
+  electroenergy
 };
+
+//@ts-ignore
+window.store = store;

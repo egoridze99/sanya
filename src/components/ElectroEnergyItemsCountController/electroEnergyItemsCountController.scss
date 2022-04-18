@@ -1,0 +1,19 @@
+@import "src/core/stylesheets/core.variables";
+@import "src/core/stylesheets/core.mixins";
+
+.ElectroEnergyItemsCountController {
+  display: flex;
+  align-items: center;
+
+  &__label {
+    @include text_M;
+
+    &_bold {
+      @include H3;
+    }
+  }
+
+  & > * {
+    margin-right: $space_XXS;
+  }
+}

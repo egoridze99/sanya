@@ -1,0 +1,15 @@
+@import "src/core/stylesheets/core.variables";
+
+.ElectroEnergyTable {
+  height: 316px;
+  margin-top: $space_S;
+
+  &__footer {
+
+    height: 36px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: $space_S;
+  }
+}
