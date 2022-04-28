@@ -9,3 +9,4 @@ export * from "./MultiSelect";
 export * from "./Loader";
 export * from "./Hint";
 export * from "./Dropdown";
+export * from "./Notification";

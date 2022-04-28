@@ -5,6 +5,7 @@ import ElectroEnergyItemsCountController from "src/components/ElectroEnergyItems
 import ElectroEnergyTable from "../../components/ElectroEnergyTable";
 
 import "./electroEnergy.scss";
+import ElectroenergySavedDataTable from "../../components/ElectroenergySavedDataTable";
 
 const ElectroEnergy = () => {
   const {electroenergy} = useStore();
@@ -20,10 +21,19 @@ const ElectroEnergy = () => {
         removeReclouser={() => electroenergy.removeReclouser()}
         addReclouser={() => electroenergy.addReclouser()}
       />
-      <ElectroEnergyTable
-        data={electroenergy.data}
-        calculate={() => electroenergy.calculate()}
-      />
+      <div className="ElectroEnergy__tables">
+        <ElectroEnergyTable
+          data={electroenergy.data}
+          calculate={() => electroenergy.calculate()}
+          saveCalculatedData={() => electroenergy.saveCalculatedData()}
+          SAIFI={electroenergy.SAIFI}
+          SAIDI={electroenergy.SAIDI}
+        />
+        <ElectroenergySavedDataTable
+          data={electroenergy.savedCalculatedData}
+          removeItem={(id) => electroenergy.removeCalculatedDataItem(id)}
+        />
+      </div>
     </div>
   );
 };

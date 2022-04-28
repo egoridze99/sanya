@@ -1,9 +1,12 @@
 import {ElectroenergyRepository} from "./electroenergy/electroenergy.repository";
+import {NotificationsRepository} from "./notifications/notifications.repository";
 
-const electroenergy = new ElectroenergyRepository();
+const notifications = new NotificationsRepository();
+const electroenergy = new ElectroenergyRepository(notifications);
 
 export const store = {
-  electroenergy
+  electroenergy,
+  notifications
 };
 
 //@ts-ignore

@@ -1,0 +1,18 @@
+@import "src/core/stylesheets/core.variables";
+@import "src/core/stylesheets/core.mixins";
+
+.ElectroenergySavedDataTable {
+  margin-top: $space_S;
+  margin-left: $space_XXL;
+  width: 502px;
+  height: 285px;
+
+  &__title {
+    @include H3;
+    margin-bottom: $space_XS;
+  }
+
+  &_expanded {
+    height: 293px;
+  }
+}

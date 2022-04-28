@@ -22,6 +22,7 @@ type PaginationProps = {
 };
 
 const itemsOnPageData = [
+  {label: 5, value: 5},
   {label: 10, value: 10},
   {label: 25, value: 25},
   {label: 50, value: 50},
@@ -68,9 +69,10 @@ export const Pagination: React.FC<PaginationProps> = React.memo(
       [page, setPage]
     );
 
-    const handleChangePage = React.useCallback((p: number) => setPage(p - 1), [
-      setPage
-    ]);
+    const handleChangePage = React.useCallback(
+      (p: number) => setPage(p - 1),
+      [setPage]
+    );
 
     const goToFirstPage = React.useCallback(() => {
       setPage(0);

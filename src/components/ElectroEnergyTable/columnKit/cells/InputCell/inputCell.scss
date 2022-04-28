@@ -1,0 +1,21 @@
+@import "src/core/stylesheets/core.variables";
+
+.InputCell {
+  width: 100%;
+  height: 36px;
+  display: flex;
+  align-items: center;
+
+  &-text {
+    margin: 0;
+  }
+
+  &_text-editor {
+    padding-left: $space_S;
+    cursor: text;
+  }
+
+  &_input {
+    display: block;
+  }
+}

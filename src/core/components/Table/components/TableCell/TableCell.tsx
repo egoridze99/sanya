@@ -8,6 +8,7 @@ import {CheckBox} from "../../../CheckBox";
 import classnames from "classnames";
 
 import "./tableCell.scss";
+import {observer} from "mobx-react-lite";
 
 const TableCell: React.FC<{
   row: any;
@@ -54,9 +55,10 @@ const TableCell: React.FC<{
     );
   }, [column, multiline, onItemChange, row]);
 
-  const isCheckColumn = useMemo(() => column.key === "table-check", [
-    column.key
-  ]);
+  const isCheckColumn = useMemo(
+    () => column.key === "table-check",
+    [column.key]
+  );
 
   const isRowGroupingColumn = useMemo(
     () => column.key === "table-expand-groups",
@@ -173,4 +175,4 @@ const TableCell: React.FC<{
     </>
   );
 };
-export default React.memo(TableCell);
+export default observer(TableCell);

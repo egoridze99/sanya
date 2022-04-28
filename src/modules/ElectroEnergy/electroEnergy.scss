@@ -2,4 +2,8 @@
 
 .ElectroEnergy {
   padding: $space_L;
+
+  &__tables {
+    display: flex;
+  }
 }

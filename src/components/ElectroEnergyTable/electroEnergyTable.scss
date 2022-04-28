@@ -1,15 +1,33 @@
 @import "src/core/stylesheets/core.variables";
+@import "src/core/stylesheets/core.mixins";
 
 .ElectroEnergyTable {
   height: 316px;
+  width: 1000px;
   margin-top: $space_S;
 
   &__footer {
-
     height: 36px;
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    padding-right: $space_S;
+    padding: 0 $space_S;
+
+    &-left {
+      display: flex;
+      align-items: center;
+    }
+
+    &_space-between {
+      justify-content: space-between;
+    }
+
+    &-value {
+      @include text_M;
+      margin-right: $space_S;
+      &_bold {
+        @include H3;
+      }
+    }
   }
 }

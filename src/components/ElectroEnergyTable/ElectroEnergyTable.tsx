@@ -4,15 +4,22 @@ import {ElectroenergyItem} from "src/store/electroenergy/models/electroenergy.mo
 import useColumns from "./hooks/useColumns";
 
 import "./electroEnergyTable.scss";
+import classnames from "classnames";
 
 type ElectroEnergyTableProps = {
   data: ElectroenergyItem[];
   calculate(): void;
+  saveCalculatedData(): void;
+  SAIFI: number | null;
+  SAIDI: number | null;
 };
 
 const ElectroEnergyTable: React.FC<ElectroEnergyTableProps> = ({
   data,
-  calculate
+  calculate,
+  saveCalculatedData,
+  SAIFI,
+  SAIDI
 }) => {
   const columns = useColumns();
   const defaultColumnsVisible = React.useMemo(() => {
@@ -21,7 +28,36 @@ const ElectroEnergyTable: React.FC<ElectroEnergyTableProps> = ({
 
   const footerRender = React.useCallback(() => {
     return (
-      <div className={"ElectroEnergyTable__footer"}>
+      <div
+        className={classnames("ElectroEnergyTable__footer", {
+          "ElectroEnergyTable__footer_space-between": !!SAIFI
+        })}
+      >
+        <div className="ElectroEnergyTable__footer-left">
+          {SAIFI && (
+            <p className="ElectroEnergyTable__footer-value">
+              Рассчитанное значение SAIFI:{" "}
+              <span className={"ElectroEnergyTable__footer-value_bold"}>
+                {SAIFI}
+              </span>
+            </p>
+          )}
+          {SAIDI && (
+            <p className="ElectroEnergyTable__footer-value">
+              Рассчитанное значение SAIDI:{" "}
+              <span className={"ElectroEnergyTable__footer-value_bold"}>
+                {SAIDI}
+              </span>
+            </p>
+          )}
+          {SAIFI && SAIDI && (
+            <Button
+              content={"Сохранить рассчитанные значения"}
+              onClick={saveCalculatedData}
+              size={"small"}
+            />
+          )}
+        </div>
         <Button content={"Расчитать"} onClick={calculate} size="small" />
       </div>
     );
