@@ -18,6 +18,8 @@ export default (
     },
     {key: "SAIFI", dataKey: "SAIFI", width: "100px", title: "SAIFI"},
     {key: "SAIDI", dataKey: "SAIDI", width: "100px", title: "SAIDI"},
+    {key: "ENS", dataKey: "ENS", width: "100px", title: "ENS"},
+    {key: "Tok", dataKey: "Tok", width: "100px", title: "Tok"},
     {
       key: "id",
       dataKey: "id",

@@ -8,6 +8,7 @@ export class ElectroenergyItem {
 
   @observable W: number | null = null;
   @observable N: number | null = null;
+  @observable P: number | null = null;
   @observable L: number | null = null;
   @observable T: number | null = null;
 
@@ -28,6 +29,10 @@ export class ElectroenergyItem {
     this.L = this.getNumberValueToSet(val);
   }
 
+  @action setP(val: string) {
+    this.P = this.getNumberValueToSet(val);
+  }
+
   @action calculateW(Knu: number) {
     this.W = null;
     if (!this.N || !this.L) {
@@ -35,7 +40,7 @@ export class ElectroenergyItem {
     }
 
     const value = 0.01 * W0 * (1 - Knu) * this.L;
-    this.W = parseFloat(value.toFixed(2));
+    this.W = parseFloat(value.toFixed(3));
   }
 
   @action calculateT(kvv: number) {
@@ -45,7 +50,7 @@ export class ElectroenergyItem {
     }
 
     const value = this.W * T * kvv;
-    this.T = parseFloat(value.toFixed(2));
+    this.T = parseFloat(value.toFixed(3));
   }
 
   private getNumberValueToSet(val: string) {

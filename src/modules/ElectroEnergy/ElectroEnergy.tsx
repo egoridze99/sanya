@@ -28,6 +28,8 @@ const ElectroEnergy = () => {
           calculate={() => electroenergy.calculate()}
           SAIFI={electroenergy.SAIFI}
           SAIDI={electroenergy.SAIDI}
+          ENS={electroenergy.ENS}
+          Tok={electroenergy.Tok}
         />
         <ElectroenergySavedDataTable
           data={electroenergy.savedCalculatedData}

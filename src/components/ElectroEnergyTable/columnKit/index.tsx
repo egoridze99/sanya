@@ -25,6 +25,15 @@ export default (): Column<ElectroenergyItem>[] => {
       )
     },
     {
+      key: "P",
+      dataKey: "P",
+      title: "P, кВт",
+      width: "100px",
+      render: (key, data) => (
+        <InputCell item={data} field={key} onChange={(v) => data.setP(v)} />
+      )
+    },
+    {
       key: "W",
       dataKey: "W",
       title: "ω, откл/год",

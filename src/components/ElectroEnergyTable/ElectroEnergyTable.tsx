@@ -11,13 +11,17 @@ type ElectroEnergyTableProps = {
   calculate(): void;
   SAIFI: number | null;
   SAIDI: number | null;
+  ENS: number | null;
+  Tok: number | null;
 };
 
 const ElectroEnergyTable: React.FC<ElectroEnergyTableProps> = ({
   data,
   calculate,
   SAIFI,
-  SAIDI
+  SAIDI,
+  ENS,
+  Tok
 }) => {
   const columns = useColumns();
   const defaultColumnsVisible = React.useMemo(() => {
@@ -32,7 +36,7 @@ const ElectroEnergyTable: React.FC<ElectroEnergyTableProps> = ({
         })}
       >
         <div className="ElectroEnergyTable__footer-left">
-          {SAIFI && (
+          {SAIFI !== null && (
             <p className="ElectroEnergyTable__footer-value">
               Рассчитанное значение SAIFI:{" "}
               <span className={"ElectroEnergyTable__footer-value_bold"}>
@@ -40,11 +44,27 @@ const ElectroEnergyTable: React.FC<ElectroEnergyTableProps> = ({
               </span>
             </p>
           )}
-          {SAIDI && (
+          {SAIDI !== null && (
             <p className="ElectroEnergyTable__footer-value">
               Рассчитанное значение SAIDI:{" "}
               <span className={"ElectroEnergyTable__footer-value_bold"}>
                 {SAIDI}
+              </span>
+            </p>
+          )}
+          {ENS !== null && (
+            <p className="ElectroEnergyTable__footer-value">
+              Рассчитанное значение ENS:{" "}
+              <span className={"ElectroEnergyTable__footer-value_bold"}>
+                {ENS}
+              </span>
+            </p>
+          )}
+          {Tok !== null && Tok !== undefined && (
+            <p className="ElectroEnergyTable__footer-value">
+              Срок окупаемости:{" "}
+              <span className={"ElectroEnergyTable__footer-value_bold"}>
+                {Tok}
               </span>
             </p>
           )}

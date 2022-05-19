@@ -11,6 +11,8 @@ type ElectroenergyGraphicsProps = {
     SAIFI: Highcharts.Options;
     SAIFIAbs: Highcharts.Options;
     SAIDIAbs: Highcharts.Options;
+    ENS: Highcharts.Options;
+    Tok: Highcharts.Options;
   };
 };
 
@@ -28,15 +30,20 @@ const ElectroenergyGraphics: React.FC<ElectroenergyGraphicsProps> = ({
     React.useState<Highcharts.Options>({});
   const [saidiAbsOptions, setSaidiAbsOptions] =
     React.useState<Highcharts.Options>({});
+  const [ENSOptions, setEnsOptions] = React.useState<Highcharts.Options>({});
+  const [TokOptions, setTokOptions] = React.useState<Highcharts.Options>({});
 
   const setGraphicsData = () => {
-    const {SAIFI, SAIDI, SAIFIAbs, SAIDIAbs} = calculateGraphicsData();
+    const {SAIFI, SAIDI, SAIFIAbs, SAIDIAbs, Tok, ENS} =
+      calculateGraphicsData();
 
     setIsVisible(true);
     setSaifiOptions(SAIFI);
     setSaidiOptions(SAIDI);
     setSaifiAbsOptions(SAIFIAbs);
     setSaidiAbsOptions(SAIDIAbs);
+    setEnsOptions(ENS);
+    setTokOptions(Tok);
   };
 
   return (
@@ -71,6 +78,12 @@ const ElectroenergyGraphics: React.FC<ElectroenergyGraphicsProps> = ({
               highcharts={Highcharts}
               options={saidiAbsOptions}
             />
+          </div>
+          <div className={"ElectroenergyGraphics__item"}>
+            <HighchartsReact highcharts={Highcharts} options={ENSOptions} />
+          </div>
+          <div className={"ElectroenergyGraphics__item"}>
+            <HighchartsReact highcharts={Highcharts} options={TokOptions} />
           </div>
         </div>
       )}
