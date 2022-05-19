@@ -6,6 +6,7 @@ import ElectroEnergyTable from "../../components/ElectroEnergyTable";
 
 import "./electroEnergy.scss";
 import ElectroenergySavedDataTable from "../../components/ElectroenergySavedDataTable";
+import ElectroenergyGraphics from "../../components/ElectroenergyGraphics";
 
 const ElectroEnergy = () => {
   const {electroenergy} = useStore();
@@ -25,13 +26,17 @@ const ElectroEnergy = () => {
         <ElectroEnergyTable
           data={electroenergy.data}
           calculate={() => electroenergy.calculate()}
-          saveCalculatedData={() => electroenergy.saveCalculatedData()}
           SAIFI={electroenergy.SAIFI}
           SAIDI={electroenergy.SAIDI}
         />
         <ElectroenergySavedDataTable
           data={electroenergy.savedCalculatedData}
           removeItem={(id) => electroenergy.removeCalculatedDataItem(id)}
+        />
+      </div>
+      <div className="ElectroEnergy__graphics">
+        <ElectroenergyGraphics
+          calculateGraphicsData={() => electroenergy.getGraphicsData()}
         />
       </div>
     </div>

@@ -1,7 +1,8 @@
 import {action, makeObservable, observable} from "mobx";
 import {ElectroenergyItem} from "./models/electroenergy.model";
 import {NotificationsRepository} from "../notifications/notifications.repository";
-import {Knu, kvv, Nt} from "src/constants/electroenergy";
+import {Knu, kvv, Nt, T, W0} from "src/constants/electroenergy";
+import * as Highcharts from "highcharts";
 import uid from "src/utils/uid";
 
 export class ElectroenergyRepository {
@@ -60,6 +61,7 @@ export class ElectroenergyRepository {
 
     this.SAIFI = this.calculateSAIFI();
     this.SAIDI = this.calculateSAIDI();
+    this.saveCalculatedData();
   }
 
   @action saveCalculatedData() {
@@ -80,6 +82,184 @@ export class ElectroenergyRepository {
     this.savedCalculatedData = this.savedCalculatedData.filter(
       (i) => i.id !== id
     );
+  }
+
+  getGraphicsData(): {
+    SAIDI: Highcharts.Options;
+    SAIFI: Highcharts.Options;
+    SAIFIAbs: Highcharts.Options;
+    SAIDIAbs: Highcharts.Options;
+  } {
+    return {
+      SAIDI: this.getSaidiGraphicsData(),
+      SAIFI: this.getSaifiGraphicsData(),
+      SAIFIAbs: this.getSaifiAbsGraphicsData(),
+      SAIDIAbs: this.getSaidiAbsGraphicsData()
+    };
+  }
+
+  private getSaifiGraphicsData(): Highcharts.Options {
+    return {
+      title: {
+        align: "left",
+        style: {fontSize: "14px"},
+        text: "Зависимость показателя надежности SAIFI от количества реклоузеров"
+      },
+      yAxis: {
+        title: {
+          text: "SAIFI, откл/год"
+        }
+      },
+      xAxis: {
+        categories: this.savedCalculatedData.map((item) =>
+          item.reclosersCount.toString()
+        ),
+        title: {
+          text: "Количество реклоузеров, шт."
+        }
+      },
+      legend: {
+        layout: "vertical",
+        align: "right",
+        verticalAlign: "middle"
+      },
+      series: [
+        {
+          name: "SAIFI(n)",
+          type: "line",
+          data: this.savedCalculatedData.map((item) => item.SAIFI)
+        }
+      ]
+    };
+  }
+
+  private getSaifiAbsGraphicsData(): Highcharts.Options {
+    const L = this.data.reduce<number>((acc, item) => {
+      return acc + (item?.L as number) || 0;
+    }, 0);
+
+    if (!L) {
+      return {};
+    }
+
+    const defaultSaifiValue = parseFloat((0.01 * W0 * 0.4 * L).toFixed(2));
+
+    return {
+      title: {
+        align: "left",
+        style: {fontSize: "14px"},
+        text: "Зависимость показателя надежности SAIFI в процентах от количества реклоузеров относительно исходного режима"
+      },
+      yAxis: {
+        title: {
+          text: "SAIFI, %"
+        }
+      },
+      xAxis: {
+        categories: this.savedCalculatedData.map((item) =>
+          item.reclosersCount.toString()
+        ),
+        title: {
+          text: "Количество реклоузеров, шт."
+        }
+      },
+      legend: {
+        layout: "vertical",
+        align: "right",
+        verticalAlign: "middle"
+      },
+      series: [
+        {
+          name: "SAIFI(n)",
+          type: "line",
+          data: this.savedCalculatedData.map((item) =>
+            parseFloat(((defaultSaifiValue / item.SAIFI) * 100).toFixed(2))
+          )
+        }
+      ]
+    };
+  }
+
+  private getSaidiGraphicsData(): Highcharts.Options {
+    return {
+      title: {
+        align: "left",
+        style: {fontSize: "14px"},
+        text: "Зависимость показателя надежности SAIDI от количества реклоузеров"
+      },
+      yAxis: {
+        title: {
+          text: "SAIDI, откл/год"
+        }
+      },
+      xAxis: {
+        categories: this.savedCalculatedData.map((item) =>
+          item.reclosersCount.toString()
+        ),
+        title: {
+          text: "Количество реклоузеров, шт."
+        }
+      },
+      legend: {
+        layout: "vertical",
+        align: "right",
+        verticalAlign: "middle"
+      },
+      series: [
+        {
+          name: "SAIDI(n)",
+          type: "line",
+          data: this.savedCalculatedData.map((item) => item.SAIDI)
+        }
+      ]
+    };
+  }
+
+  private getSaidiAbsGraphicsData(): Highcharts.Options {
+    const L = this.data.reduce<number>((acc, item) => {
+      return acc + (item?.L as number) || 0;
+    }, 0);
+
+    if (!L) {
+      return {};
+    }
+
+    const defaultSaidiValue = parseFloat((0.01 * W0 * 0.4 * L * T).toFixed(2));
+
+    return {
+      title: {
+        align: "left",
+        style: {fontSize: "14px"},
+        text: "Зависимость показателя надежности SAIDI в процентах от количества реклоузеров относительно исходного режима"
+      },
+      yAxis: {
+        title: {
+          text: "SAIDI, %"
+        }
+      },
+      xAxis: {
+        categories: this.savedCalculatedData.map((item) =>
+          item.reclosersCount.toString()
+        ),
+        title: {
+          text: "Количество реклоузеров, шт."
+        }
+      },
+      legend: {
+        layout: "vertical",
+        align: "right",
+        verticalAlign: "middle"
+      },
+      series: [
+        {
+          name: "SAIDI(n)",
+          type: "line",
+          data: this.savedCalculatedData.map((item) =>
+            parseFloat(((defaultSaidiValue / item.SAIFI) * 100).toFixed(2))
+          )
+        }
+      ]
+    };
   }
 
   private calculateSAIFI() {

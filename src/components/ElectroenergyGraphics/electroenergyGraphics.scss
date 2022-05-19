@@ -1,0 +1,19 @@
+@import "src/core/stylesheets/core.variables";
+
+.ElectroenergyGraphics {
+  margin-top: $space_S;
+
+  &__calculate-buttons {
+    display: flex;
+  }
+
+  &__item {
+    margin-right: $space_S;
+  }
+
+  &__graphics {
+    display: flex;
+    justify-content: space-between;
+    overflow-x: scroll;
+  }
+}

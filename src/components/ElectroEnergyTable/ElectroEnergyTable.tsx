@@ -9,7 +9,6 @@ import classnames from "classnames";
 type ElectroEnergyTableProps = {
   data: ElectroenergyItem[];
   calculate(): void;
-  saveCalculatedData(): void;
   SAIFI: number | null;
   SAIDI: number | null;
 };
@@ -17,7 +16,6 @@ type ElectroEnergyTableProps = {
 const ElectroEnergyTable: React.FC<ElectroEnergyTableProps> = ({
   data,
   calculate,
-  saveCalculatedData,
   SAIFI,
   SAIDI
 }) => {
@@ -49,13 +47,6 @@ const ElectroEnergyTable: React.FC<ElectroEnergyTableProps> = ({
                 {SAIDI}
               </span>
             </p>
-          )}
-          {SAIFI && SAIDI && (
-            <Button
-              content={"Сохранить рассчитанные значения"}
-              onClick={saveCalculatedData}
-              size={"small"}
-            />
           )}
         </div>
         <Button content={"Расчитать"} onClick={calculate} size="small" />

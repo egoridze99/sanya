@@ -9,7 +9,7 @@ export default (): Column<ElectroenergyItem>[] => {
     {
       key: "L",
       dataKey: "L",
-      title: "L",
+      title: "L, км",
       width: "100px",
       render: (key, data) => (
         <InputCell item={data} field={key} onChange={(v) => data.setL(v)} />
@@ -18,7 +18,7 @@ export default (): Column<ElectroenergyItem>[] => {
     {
       key: "N",
       dataKey: "N",
-      title: "N",
+      title: "N, шт",
       width: "100px",
       render: (key, data) => (
         <InputCell item={data} field={key} onChange={(v) => data.setN(v)} />
@@ -27,15 +27,15 @@ export default (): Column<ElectroenergyItem>[] => {
     {
       key: "W",
       dataKey: "W",
-      title: "ω",
-      width: "100px",
+      title: "ω, откл/год",
+      width: "140px",
       render: (key, data) => <ObservableCell item={data} field={key} />
     },
     {
       key: "T",
       dataKey: "T",
-      title: "T",
-      width: "100px",
+      title: "T, ч/год",
+      width: "110px",
       render: (key, data) => <ObservableCell item={data} field={key} />
     }
   ];
